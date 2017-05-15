@@ -4,10 +4,16 @@ MAINTAINER Videodock <tech@videodock.com>
 RUN apk update && apk upgrade
 
 # update vim and wget only for in container editing
-RUN apk --update add python-dev curl git && rm /var/cache/apk/*
+RUN apk --update add python-dev ruby ruby-dev curl git gcc alpine-sdk libffi-dev && rm /var/cache/apk/*
 
-RUN npm install grunt-cli bower -g
+# install grunt, gulp and bower
+RUN npm install grunt-cli gulp-cli bower -g
 
+# install sass and compass
+RUN gem install --no-rdoc --no-ri sass -v 3.4.22
+RUN gem install --no-rdoc --no-ri compass -v 1.0.3
+
+# install aws cli
 RUN curl -O https://bootstrap.pypa.io/get-pip.py
 RUN python get-pip.py
 RUN pip install awscli
