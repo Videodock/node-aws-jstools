@@ -6,7 +6,7 @@ RUN apk update && apk upgrade
 # update vim and wget only for in container editing
 RUN apk --update add python-dev curl git && rm /var/cache/apk/*
 
-RUN npm install grunt-cli -g
+RUN npm install grunt-cli bower -g
 
 RUN curl -O https://bootstrap.pypa.io/get-pip.py
 RUN python get-pip.py
